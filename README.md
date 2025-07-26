@@ -1,26 +1,94 @@
 # 📝 Task Tracker
 
-A modern full-stack **Task Management App** built with **React**, **Tailwind CSS**, and **FastAPI**, enabling users to add, view, and delete tasks in real time.
-
----
+A full-stack **Task Management Application** built using **React.js**, **Tailwind CSS**, and **FastAPI**. This app lets users manage their daily tasks with priority, due dates, and completion tracking — all in a sleek, responsive UI.
 
 ## 🚀 Features
 
-- ✅ Add new tasks with ease
-- 🗑️ Delete tasks dynamically
-- ⚡ Fast and responsive UI built with Tailwind CSS
-- 🔄 Real-time task updates
-- 🔐 RESTful API built with FastAPI
-- 📦 Modular code structure (Frontend + Backend)
+* ✅ Add, delete, and mark tasks as completed
+* 🏷️ Set **priority levels** (High, Medium, Low)
+* 📅 Assign **due dates**
+* 📊 Filter by status (All, Pending, Done)
+* 🔀 Sort tasks by due date or priority
+* 💻 Fully responsive modern UI using Tailwind CSS
+* 🔄 Real-time updates with FastAPI backend
+
+## 🧑‍💻 Technologies Used
+
+### Frontend
+
+* React.js (with hooks)
+* Tailwind CSS
+* Axios (API requests)
+* Vite (for lightning-fast builds)
+
+### Backend
+
+* FastAPI (Python)
+* CORS Middleware
+* Pydantic (data validation)
+
+## 🗄️ UI Preview
+
+| Light Mode                         | 
+| ---------------------------------- | 
+| ![Light UI](./assets/light-ui.png) | 
+
+## 📂 Folder Structure
+
+```
+task-tracker/
+├── backend/
+│   └── main.py
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── AddTask.jsx
+│   │   │   └── TaskList.jsx
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   ├── App.jsx
+│   │   └── index.css
+└── README.md
+```
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Nithyaa-S/task-tracker.git
+cd task-tracker
+```
 
 ---
 
-## 🛠️ Tech Stack
+### 2. Backend Setup (FastAPI)
 
-| Frontend  | Backend  | Others      |
-|-----------|----------|-------------|
-| React.js  | FastAPI  | Tailwind CSS |
-| Axios     | Python   | Vite         |
-| JavaScript | Uvicorn | Git/GitHub   |
+```bash
+cd backend
+pip install fastapi uvicorn
+uvicorn main:app --reload
+```
 
+---
 
+### 3. Frontend Setup (React + Vite)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🌐 API Endpoints
+
+| Method | Endpoint      | Description        |
+| ------ | ------------- | ------------------ |
+| GET    | `/tasks`      | Fetch all tasks    |
+| POST   | `/tasks`      | Add a new task     |
+| PUT    | `/tasks/{id}` | Update task status |
+| DELETE | `/tasks/{id}` | Delete a task      |
+
+---
