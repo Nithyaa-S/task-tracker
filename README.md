@@ -29,9 +29,8 @@ A full-stack **Task Management Application** built using **React.js**, **Tailwin
 
 ## 🗄️ UI Preview
 
-| Light Mode                         | 
-| ---------------------------------- | 
-| ![Light UI](./assets/light-ui.png) | 
+
+<img width="926" height="902" alt="image" src="https://github.com/user-attachments/assets/37a1778b-58f2-4965-8ff6-9f39c09fa0af" />
 
 ## 📂 Folder Structure
 
