@@ -1,18 +1,24 @@
-import axios from 'axios';
+const API_URL = 'http://127.0.0.1:8000/tasks';
 
-const API_URL = 'http://localhost:8000';
-
-export const getTasks = async () => {
-  const res = await axios.get(`${API_URL}/tasks`);
-  return res.data;
+export const fetchTasks = async () => {
+  const res = await fetch(API_URL);
+  return res.json();
 };
 
-export const addTask = async (task) => {
-  const res = await axios.post(`${API_URL}/tasks`, task);
-  return res.data;
+export const createTask = async (task) => {
+  task.id = ""; // backend will override this
+  task.completed = false;
+  await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(task),
+  });
 };
 
 export const deleteTask = async (id) => {
-  const res = await axios.delete(`${API_URL}/tasks/${id}`);
-  return res.data;
+  await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+};
+
+export const toggleTaskStatus = async (id) => {
+  await fetch(`${API_URL}/${id}`, { method: 'PUT' });
 };

@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List
+from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -8,10 +8,17 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], all
 
 class Task(BaseModel):
     title: str
+    description: Optional[str] = ""
+    completed: Optional[bool] = False
+    priority: Optional[str] = "Medium"
+    dueDate: Optional[str] = ""
 
 class TaskUpdate(BaseModel):
-    title: str = None
-    completed: bool = None
+    title: Optional[str]
+    description: Optional[str]
+    completed: Optional[bool]
+    priority: Optional[str]
+    dueDate: Optional[str]
 
 tasks = []
 next_id = 1
@@ -23,7 +30,14 @@ def get_tasks():
 @app.post("/tasks")
 def add_task(task: Task):
     global next_id
-    new = {"id": next_id, "title": task.title, "completed": False}
+    new = {
+        "id": next_id,
+        "title": task.title,
+        "description": task.description,
+        "completed": task.completed,
+        "priority": task.priority,
+        "dueDate": task.dueDate
+    }
     tasks.append(new)
     next_id += 1
     return new
@@ -38,9 +52,10 @@ def delete_task(task_id: int):
 def update_task(task_id: int, upd: TaskUpdate):
     for t in tasks:
         if t["id"] == task_id:
-            if upd.completed is not None:
-                t["completed"] = upd.completed
-            if upd.title:
-                t["title"] = upd.title
+            if upd.title is not None: t["title"] = upd.title
+            if upd.description is not None: t["description"] = upd.description
+            if upd.completed is not None: t["completed"] = upd.completed
+            if upd.priority is not None: t["priority"] = upd.priority
+            if upd.dueDate is not None: t["dueDate"] = upd.dueDate
             return t
     raise HTTPException(404, "Task not found")
